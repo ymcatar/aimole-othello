@@ -2,8 +2,8 @@ import Colors from 'material-ui/lib/styles/colors';
 
 export default {
     cell: {
-        bgColor: Colors.amber500,
-        borderColor: Colors.amberA200,
+        bgColor: Colors.black700,
+        borderColor: Colors.black,
         textColor: Colors.white
     },
     main: {

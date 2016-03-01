@@ -1,6 +1,6 @@
-# Tic-Tac-Toe Game for aimole
+# Othello Game for aimole
 
-This is a Tic-Tac-Toe game built for the AI competing platfrom [aimole](https://www.github.com/leoyuholo/aimole). This project is licensed under the terms of GPLv3.
+This is a Othello game built for the AI competing platfrom [aimole](https://www.github.com/leoyuholo/aimole). This project is licensed under the terms of GPLv3.
 
 ## Development
 
