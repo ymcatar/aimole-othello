@@ -4,10 +4,9 @@ export default {
     cell: {
         bgColor: Colors.black700,
         borderColor: Colors.black,
-        textColor: Colors.white
     },
     main: {
-        background: 'url(./bg.jpg)'
+        background: 'linear-gradient(#E5FBD5, #0A6D88)'
     },
     zDepth: {
         _1: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
