@@ -1,14 +1,11 @@
 import React from 'react';
 import {Motion, spring} from 'react-motion';
-import {Paper} from 'material-ui';
-
-import Styles from 'Styles.jsx';
 
 const getCellStyle = (x, y, val, flip) => {
     var style = {
         width: '6vh',
         height: '6vh',
-        boxShadow: Styles.zDepth._1,
+        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
         borderRadius: '50%',
         transform: `rotateZ(45deg) scale(${x}) rotateX(${flip? y: 0}deg)`
     };

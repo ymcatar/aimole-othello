@@ -1,14 +1,11 @@
 import React from 'react';
-
-import Styles from 'Styles.jsx';
-
 import Board from 'game/Board.jsx';
 
 const styles = {
     main: {
         height: 'calc(100vh - 60px)',
         width: '100vw',
-        background: Styles.main.background,
+        background: 'linear-gradient(#E5FBD5, #0A6D88)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
