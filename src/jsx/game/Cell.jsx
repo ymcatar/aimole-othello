@@ -9,12 +9,9 @@ const getCellStyle = (x, y, val, flip) => {
         width: '6vh',
         height: '6vh',
         boxShadow: Styles.zDepth._2,
-        borderRadius: '50%'
+        borderRadius: '50%',
+        transform: `rotateZ(45deg) scale(${x}) rotateX(${flip? y: 0}deg)`
     };
-
-    style.transform = flip?
-        `rotateZ(45deg) scale(0.9) rotateX(${y}deg)`:
-        `rotateZ(45deg) scale(${x})`;
 
     switch(val) {
         case 1:
@@ -42,12 +39,11 @@ export default class Cell extends React.Component {
 
     render() {
         let prev = this.state.prevVal, curr = this.props.val;
-        //console.log(prev, curr);
-        let flip = (prev !== 0 && curr !== 0) && (prev !== curr);
+        let flip = (prev == 1 && curr == 2) || (prev == 2 && curr == 1);
         return (
             <Motion style={{
                 x: spring(this.props.val === 0? 0.1: 0.9, {stiffness: 100, damping: 10}),
-                y: spring(flip? 0: 360, {stiffness: 200, damping: 30})
+                y: spring(this.props.val === 1? 360: 0, {stiffness: 200, damping: 30})
             }}>
                 {({x, y}) => <td style={getCellStyle(x, y, this.props.val, flip)}/>}
             </Motion>
