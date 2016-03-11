@@ -5,22 +5,21 @@ const getCellStyle = (animation, val, isReversed) => {
     let {pop, flip, highlight} = animation;
 
     var style = {
-        margin: '10px',
         width: '5vh',
         height: '5vh',
-        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+        boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.15)',
         borderRadius: '50%',
         transform: `rotateZ(45deg) scale(${pop}) rotateX(${isReversed? flip: 0}deg)`
     };
 
     switch(val) {
         case 1:
-            style.backgroundColor = '#333';
-            style.border = `5px solid rgba(86, 86, 86, ${highlight})`;
+            style.backgroundColor = 'black';
+            style.border = `5px solid rgba(255, 50, 50, ${highlight})`;
             break;
         case 2:
             style.backgroundColor = 'white';
-            style.border = `5px solid rgba(200, 200, 200, ${highlight})`;
+            style.border = `5px solid rgba(255, 50, 50, ${highlight})`;
             break;
         default:
             style.backgroundColor = '#eee';
@@ -54,7 +53,7 @@ export default class Cell extends React.Component {
             <Motion
                 defaultStyle={{pop: 0.1, flip: 0, highlight: 0}}
                 style={animation}>
-                {(animation) => <td style={getCellStyle(animation, this.props.val, isReversed)}/>}
+                {(animation) => <div style={getCellStyle(animation, this.props.val, isReversed)}/>}
             </Motion>
         );
     }

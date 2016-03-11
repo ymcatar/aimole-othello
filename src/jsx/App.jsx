@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import _ from 'lodash';
 
-import Board from 'game/Board.jsx';
+import Main from 'game/Main.jsx';
 import Player from 'player/Player.jsx';
 
 import data from './data';
@@ -70,7 +70,7 @@ class App extends React.Component {
         return (
             <div style={styles.main}>
 
-                <Board
+                <Main
                     board={board || emptyBoard}
                     score={score || [0, 0]}
                     player={player || 0}

@@ -3,12 +3,14 @@ import Cell from 'game/Cell.jsx';
 
 const styles = {
     main: {
-        height: 'calc(100vh - 60px)',
+        height: '70vh',
         width: '100vw',
-        background: 'linear-gradient(#E5FBD5, #0A6D88)',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'flex-end'
+    },
+    td: {
+        margin: '10px'
     }
 };
 
@@ -21,10 +23,12 @@ export default class Board extends React.Component {
                         this.props.position[0] == i &&
                         this.props.position[1] == j;
                     return (
-                        <Cell
-                            key={`cell${i}${j}`}
-                            highlight={highlight}
-                            val={cell} />
+                        <td style={styles.td}>
+                            <Cell
+                                key={`cell${i}${j}`}
+                                highlight={highlight}
+                                val={cell} />
+                        </td>
                     );
                 })}
             </tr>
