@@ -16,7 +16,13 @@ export default class Board extends React.Component {
     render() {
         let tbody = this.props.board.map((row, i) => (
             <tr key={`row${i}`}>
-                {row.map((cell, j) => ( <Cell key={`cell${i}${j}`} val={cell} /> ))}
+                {
+                    row.map((cell, j) => (
+                        <Cell
+                            key={`cell${i}${j}`}
+                            val={cell} />
+                    ))
+                }
             </tr>
         ));
         return (

@@ -1,4 +1,4 @@
-exports default [{
+export default [{
 	"board": [
 		[0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0],

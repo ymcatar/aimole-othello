@@ -23,16 +23,15 @@ const styles = {
     }
 };
 
+let emptyBoard = [[]];
+for (let i = 0; i < 8; i++)
+     emptyBoard[0].push(_.fill(Array(8), 0));
+
 class App extends React.Component {
     constructor(props) {
         super(props);
-
-        let board = [[]];
-        for (let i = 0; i < 8; i++)
-             board[0].push(_.fill(Array(8), 0));
-
         this.state = {
-            board: board,
+            board: emptyBoard,
             submitted: false,
             currentFrame: 0,
             totalFrame: 0,
@@ -42,12 +41,11 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        let gameBoard = data.map(i => i.board);
         this.setState({
-            results: gameBoard,
+            results: data,
             submitted: true,
             currentFrame: 0,
-            totalFrame: gameBoard.length,
+            totalFrame: data.length,
             playing: true
         });
     }
@@ -65,11 +63,18 @@ class App extends React.Component {
     }
 
     render() {
+        let {board, score, player, stdout} =
+            this.state.results?
+                this.state.results[this.state.currentFrame]: [];
+
         return (
             <div style={styles.main}>
 
                 <Board
-                    board={this.state.board[this.state.currentFrame]} />
+                    board={board || emptyBoard}
+                    score={score || [0, 0]}
+                    player={player || 0}
+                    stdout={stdout || ''} />
 
                 <Player
                     playing={this.state.playing}
