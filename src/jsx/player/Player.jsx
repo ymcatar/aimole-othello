@@ -62,7 +62,7 @@ export default class Player extends React.Component {
             setTimeout(() => {
                 if (this.props.playing)
                     this.props.setCurrentFrame(this.props.currentFrame + 1);
-            }, 1000);
+            }, 1500);
     }
 
     render() {
