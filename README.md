@@ -12,6 +12,15 @@ gulp
 
 The gulp will watch for any changes in files and do its things automatically.
 
+## Build for Deployment
+
+To build files for deployment, simply:
+
+```
+gulp build
+./commit.sh
+```
+
 ## Running
 
 To run the game, just open the ```index.html``` in ```dist``` folder.
