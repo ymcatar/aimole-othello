@@ -36,10 +36,10 @@ gulp.task('jsx', () => {
 		gutil.log('jsx starting.');
 		bundler
 			.bundle()
+			.on('error', err => { gutil.log(err.message); })
 			.pipe(source('bundle.js'))
 			.pipe(gulp.dest('./dist'))
 			.pipe(livereload())
-			.on('error', err => { gutil.log(err.message); })
 			.on('end', () => { gutil.log('jsx completed.'); });
 	};
 	bundler = watchify(bundler);
@@ -66,11 +66,11 @@ gulp.task('jsx_env', () => {
 			ignore: /(bower_components)|(node_modules)/
 		})
 		.bundle()
+		.on('error', err => { gutil.log(err.message); })
 		.pipe(source('bundle.js'))
 		.pipe(buffer())
 		.pipe(uglify())
 		.pipe(gulp.dest('./dist'))
-		.on('error', err => { gutil.log(err.message); })
 		.on('end', () => { gutil.log('build completed.'); });
 });
 
