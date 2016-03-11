@@ -1,8 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import _ from 'lodash';
 
-import Main from 'game/Main.jsx';
+import Board from 'game/Board.jsx';
 import Player from 'player/Player.jsx';
 
 import data from './data';
@@ -25,27 +26,19 @@ const styles = {
 class App extends React.Component {
     constructor(props) {
         super(props);
-        let gameBoard = [
-            [
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0]
-            ]
-        ];
+
+        let board = [[]];
+        for (let i = 0; i < 8; i++)
+             board[0].push(_.fill(Array(8), 0));
+
         this.state = {
-            results: gameBoard,
+            board: board,
             submitted: false,
             currentFrame: 0,
             totalFrame: 0,
             playing: false
         };
-        this.setCurrentFrame = this.setCurrentFrame.bind(this);
-        this.setPlay = this.setPlay.bind(this);
+        _.bindAll(this, ['setCurrentFrame', 'setPlay']);
     }
 
     componentDidMount() {
@@ -74,7 +67,10 @@ class App extends React.Component {
     render() {
         return (
             <div style={styles.main}>
-                <Main result={this.state.results[this.state.currentFrame]} />
+
+                <Board
+                    board={this.state.board[this.state.currentFrame]} />
+
                 <Player
                     playing={this.state.playing}
                     setPlay={this.setPlay}

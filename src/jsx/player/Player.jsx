@@ -39,29 +39,29 @@ export default class Player extends React.Component {
     }
 
     handlePrev() {
-        this.props.setCurrentFrame.call(this, this.props.currentFrame - 1);
-        this.props.setPlay.call(this, false);
+        this.props.setCurrentFrame(this.props.currentFrame - 1);
+        this.props.setPlay(false);
     }
 
     handleNext() {
-        this.props.setCurrentFrame.call(this, this.props.currentFrame + 1);
-        this.props.setPlay.call(this, false);
+        this.props.setCurrentFrame(this.props.currentFrame + 1);
+        this.props.setPlay(false);
     }
 
     handlePlay() {
-        this.props.setPlay.call(this, !this.props.playing);
+        this.props.setPlay(!this.props.playing);
     }
 
     handleSliderChange(e, val) {
-        this.props.setCurrentFrame.call(this, Math.floor(val * this.props.totalFrame));
-        this.props.setPlay.call(this, false);
+        this.props.setCurrentFrame(Math.floor(val * this.props.totalFrame));
+        this.props.setPlay(false);
     }
 
     componentDidUpdate() {
         if (this.props.playing && this.props.currentFrame < this.props.totalFrame)
             setTimeout(() => {
                 if (this.props.playing)
-                    this.props.setCurrentFrame.call(this, this.props.currentFrame + 1);
+                    this.props.setCurrentFrame(this.props.currentFrame + 1);
             }, 1000);
     }
 
