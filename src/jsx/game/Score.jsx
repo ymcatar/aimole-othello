@@ -19,11 +19,13 @@ const styles = {
     progress: {
         margin: '0 20px 0 20px'
     },
-    innerProgress: {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        borderRadius: '50%',
-    }
 };
+
+const getInnerProgress = val => ({
+    backgroundColor: val == 1? 'black': 'white',
+    borderRadius: '50%',
+    boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.15)'
+});
 
 const getDigitStyle = val => ({
     fontSize: '10vh',
@@ -42,19 +44,21 @@ export default class Score extends React.Component {
                 <div style={styles.score}>
                     <div style={getDigitStyle(1)}>{black}</div>
                     <CircularProgress
-                        innerStyle={styles.innerProgress}
+                        innerStyle={getInnerProgress(1)}
                         style={styles.progress}
                         mode="determinate"
                         value={black/64 * 100}
+                        size={1.2}
                         color="black"/>
                 </div>
                 <div style={styles.separator} />
                 <div style={styles.score}>
                     <CircularProgress
-                        innerStyle={styles.innerProgress}
+                        innerStyle={getInnerProgress(2)}
                         style={styles.progress}
                         mode="determinate"
                         value={white/64 * 100}
+                        size={1.2}
                         color="white"/>
                     <div style={getDigitStyle(2)}>{white}</div>
                 </div>
