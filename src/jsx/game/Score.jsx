@@ -24,11 +24,11 @@ const styles = {
 const getInnerProgress = val => ({
     backgroundColor: val == 1? 'black': 'white',
     borderRadius: '50%',
-    boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.15)'
+    boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.15)',
 });
 
 const getDigitStyle = val => ({
-    fontSize: '10vh',
+    fontSize: '8vh',
     color: val == 1? 'black': 'white',
     fontWeight: 'lighter',
     width: '50vw',
@@ -48,7 +48,7 @@ export default class Score extends React.Component {
                         style={styles.progress}
                         mode="determinate"
                         value={black/64 * 100}
-                        size={1.2}
+                        size={1.1}
                         color="black"/>
                 </div>
                 <div style={styles.separator} />
@@ -58,7 +58,7 @@ export default class Score extends React.Component {
                         style={styles.progress}
                         mode="determinate"
                         value={white/64 * 100}
-                        size={1.2}
+                        size={1.1}
                         color="white"/>
                     <div style={getDigitStyle(2)}>{white}</div>
                 </div>

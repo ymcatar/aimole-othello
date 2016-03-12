@@ -63,7 +63,7 @@ class App extends React.Component {
     }
 
     render() {
-        let {board, score, player, stdout, position} =
+        let {board, score, player, stdout, position, message} =
             this.state.results?
                 this.state.results[this.state.currentFrame]: [];
 
@@ -71,6 +71,7 @@ class App extends React.Component {
             <div style={styles.main}>
 
                 <Main
+                    message={message || []}
                     board={board || emptyBoard}
                     score={score || [0, 0]}
                     player={player || 0}

@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 
 import Score from 'game/Score.jsx';
 import Board from 'game/Board.jsx';
@@ -20,7 +21,9 @@ export default class Main extends React.Component {
         return (
             <div style={styles.main}>
                 <Board {... this.props}/>
-                <Score score={this.props.score}/>
+                <MediaQuery minHeight={500}>
+                    <Score score={this.props.score}/>
+                </MediaQuery>
             </div>
         );
     }
