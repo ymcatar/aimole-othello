@@ -53,8 +53,10 @@ class App extends React.Component {
     setCurrentFrame(newVal) {
         if (newVal < 0)
             newVal = 0;
-        else if (newVal > this.state.totalFrame - 1)
+        else if (newVal > this.state.totalFrame - 1) {
             newVal = this.state.totalFrame - 1;
+            this.setState({playing: false});
+        }
         this.setState({ currentFrame: newVal });
     }
 
