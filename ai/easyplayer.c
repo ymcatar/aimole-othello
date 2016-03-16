@@ -26,25 +26,25 @@ int ok(int x, int y){
 int main(){
 	int i, j;
 	while(1){
-		gets(s[0]);
+		scanf("%s", s[0]);
 	if (s[0][0] == 'B'){
+		scanf("%s", s[0]);
 		FOR(i,0,N) scanf("%s", s[i]);
 	FOR(i,0,N) FOR(j,0,N){ if (!ok(i, j)) continue; else{
 		printf("%d %d\n", i, j);
-		gets(s);
 		fflush(stdout);
 	goto EXIT;
 	}
 	}
 	}
 	else{
+		scanf("%s", s[0]);
 		me ^= op;
 		op ^= me;
 		me ^= op;
 		FOR(i,0,N) scanf("%s", s[i]);
 	FOR(i,0,N) FOR(j,0,N) if (ok(i, j)){
 		printf("%d %d\n", i, j);
-		gets(s);
 		fflush(stdout);
 		me ^= op;
 		op ^= me;

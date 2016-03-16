@@ -26,15 +26,15 @@ int ok(int x, int y){
 int main(){
 	int i, j;
 	while(1){
-		gets(s[0]);
+		scanf("%s", s[0]);
 	if (s[0][0] == 'B'){
+		scanf("%s", s[0]);
 		FOR(i,0,N) scanf("%s", s[i]);
 		while(1){
 			i = rand() % 8;
 			j = rand() % 8;
 	if (!ok(i, j)) continue; else{
 		printf("%d %d\n", i, j);
-		gets(s);
 		fflush(stdout);
 	goto EXIT;
 		}
@@ -42,6 +42,7 @@ int main(){
 	}
 	
 	else{
+		scanf("%s", s[0]);
 		me ^= op;
 		op ^= me;
 		me ^= op;
@@ -51,7 +52,6 @@ int main(){
 			j = rand() % 8;
 		if (ok(i, j)){
 		printf("%d %d\n", i, j);
-		gets(s);
 		fflush(stdout);
 		me ^= op;
 		op ^= me;
