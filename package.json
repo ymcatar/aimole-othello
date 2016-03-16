@@ -29,5 +29,7 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "marked": "^0.3.5"
+  }
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import {Paper, FloatingActionButton, FontIcon, IconButton, Slider, Dialog} from 'material-ui';
 import _ from 'lodash';
 
+import marked from 'marked';
+
 import spec from 'spec.js';
 
 const styles = {
@@ -31,6 +33,13 @@ const styles = {
     },
     specIcon: {
         color: 'grey'
+    },
+    spec: {
+        fontFamily: 'sans-serif',
+        overflow: 'scroll',
+        height: '90vh',
+        whiteSpace: 'normal',
+        margin: '20px 0px 20px 0px',
     }
 };
 
@@ -136,18 +145,13 @@ export default class Player extends React.Component {
                 </IconButton>
 
                 <Dialog
-                    title="Specification"
                     modal={false}
                     open={this.state.open}
+                    bodyStyle={styles.spec}
                     onRequestClose={this.handleSpecToggle}>
-                    <div>
-                        {spec.message.split('\n').map(item => (
-                            <span>
-                                {item}
-                                <br />
-                            </span>
-                        ))}
-                    </div>
+                    <div dangerouslySetInnerHTML={{
+                        __html: marked(spec.message)
+                    }} />
                 </Dialog>
             </Paper>
         );
