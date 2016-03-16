@@ -148,6 +148,7 @@ export default class Player extends React.Component {
                     modal={false}
                     open={this.state.open}
                     bodyStyle={styles.spec}
+                    bodyClassName="markdown-body"
                     onRequestClose={this.handleSpecToggle}>
                     <div dangerouslySetInnerHTML={{
                         __html: marked(spec.message)

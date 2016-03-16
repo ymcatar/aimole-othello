@@ -91,5 +91,7 @@ The gameboard will become
 ........
 ........
 \`\`\`
-    `
+
+Happy coding. :D
+`
 };
