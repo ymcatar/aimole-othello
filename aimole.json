@@ -15,6 +15,11 @@
       "name": "randomplayer",
       "file": "ai/randomplayer.c",
       "language": "c"
-    }
+    },
+    {
+      "name": "easyplayer",
+      "file": "ai/easyplayer.c",
+      "language": "c"
+	}	
   ]
 }
