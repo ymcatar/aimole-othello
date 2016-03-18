@@ -8,6 +8,8 @@ import Player from 'player/Player.jsx';
 
 import data from './data';
 
+let gameData = window.aimole.display && window.aimole.display.length > 0 ? window.aimole.display : data
+
 injectTapEventPlugin();
 
 const styles = {
@@ -42,10 +44,10 @@ class App extends React.Component {
 
     componentDidMount() {
         this.setState({
-            results: data,
+            results: gameData,
             submitted: true,
             currentFrame: 0,
-            totalFrame: data.length,
+            totalFrame: gameData.length,
             playing: true
         });
     }
