@@ -1,0 +1,20 @@
+{
+  "name": "Othello",
+  "description": "Fun game.",
+  "author": "",
+  "version": "1.0.0",
+  "viewUrl": "http://leoyuholo.github.io/aimole-othello/",
+  "bgUrl": "http://leoyuholo.github.io/aimole-othello/bg.png",
+  "players": 2,
+  "verdict": {
+    "file": "verdict/verdict.py",
+    "language": "python"
+  },
+  "ai": [
+    {
+      "name": "randomplayer",
+      "file": "ai/randomplayer.c",
+      "language": "c"
+    }
+  ]
+}
