@@ -12,4 +12,3 @@ try {
 } catch (e) {
 	aimole.display = [];
 }
-console.log('aimole', aimole);
