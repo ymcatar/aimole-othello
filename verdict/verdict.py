@@ -2,8 +2,8 @@ import json
 class Verdict:
     def __init__(self):
         self.EMPTY = -1
-        self.BLACK = 1
-        self.WHITE = 0
+        self.BLACK = 0
+        self.WHITE = 1
         self.board = [[self.EMPTY for i in range(8)] for j in range(8)]
         self.board[3][3] = self.BLACK
         self.board[3][4] = self.WHITE
