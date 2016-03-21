@@ -56,7 +56,8 @@ class Verdict:
                     'action' : 'next',
                     'nextPlayer' : player,
                     'writeMsg' : player_input,
-                    'display' : self.display
+                    'display' : self.display,
+                    'timeLimit' : 2000
                  }
 
         self.send_action(action)
@@ -121,6 +122,8 @@ class Verdict:
         if command['command'] != 'start':
             self.report_error('Expect start command')
             return
+        self.players = command['players']
+        self.display = { 'players' : self.players }
         self.turn = 0
 
         #max number of turn is 60
@@ -132,14 +135,21 @@ class Verdict:
                             'score' : self.score,
                             'time' : command['time']
                            }
-            #Assuming command is either 'player', 'error' or 'terminated'
-            #If command is 'error' or 'terminated', the other player win
+            #Assuming command is either 'player', 'error', 'timeout' or 'terminated'
+            #If command is 'error', 'timeout' or 'terminated', the other player win
             if command['command'] != 'player':
-                #self.display['message'] = [(command['command'])] 
-                #hardcode to terminated
-                self.display['message'] = ['terminated']
+                if command['command'] == 'terminated':
+                    message = 'terminated %d %s' % (command['exitCode'], command['signalStr'])
+                elif command['command'] == 'error':
+                    message = 'error %s' % (command['errorMessage'])
+                elif command['command'] == 'timeout':
+                    message = 'timeout %d' % command['time']
+                else:
+                    message = 'unexpected_error'
+                self.display['message'] = [message]
                 self.winner = 1 - self.turn
                 break
+
             player = command['player']
             if player != self.turn:
                 break
