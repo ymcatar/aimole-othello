@@ -3,8 +3,8 @@
   "description": "Fun game.",
   "author": "",
   "version": "1.0.0",
-  "viewUrl": "http://leoyuholo.github.io/aimole-othello/",
-  "bgUrl": "http://leoyuholo.github.io/aimole-othello/bg.png",
+  "viewUrl": "https://leoyuholo.github.io/aimole-othello/",
+  "bgUrl": "https://leoyuholo.github.io/aimole-othello/bg.png",
   "players": 2,
   "verdict": {
     "file": "verdict/verdict.py",
