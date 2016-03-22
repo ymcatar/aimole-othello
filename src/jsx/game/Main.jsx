@@ -3,6 +3,7 @@ import MediaQuery from 'react-responsive';
 
 import Score from 'game/Score.jsx';
 import Board from 'game/Board.jsx';
+import Stdout from 'game/Stdout.jsx';
 
 const styles = {
     main: {
@@ -13,6 +14,16 @@ const styles = {
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    column: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    board: {
+        width: '70vw'
+    },
+    stdout: {
+        width: '30vw'
     }
 };
 
@@ -20,7 +31,14 @@ export default class Main extends React.Component {
     render() {
         return (
             <div style={styles.main}>
-                <Board {... this.props}/>
+                <div style={styles.column}>
+                    <Board style={styles.board} {... this.props}/>
+                    <MediaQuery minHeight={500}>
+                        <Stdout
+                            style={styles.stdout}
+                            stdout={this.props.stdout} />
+                    </MediaQuery>
+                </div>
                 <MediaQuery minHeight={500}>
                     <Score score={this.props.score}/>
                 </MediaQuery>

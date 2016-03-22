@@ -4,7 +4,7 @@ import Cell from 'game/Cell.jsx';
 const styles = {
     main: {
         height: '70vh',
-        width: '100vw',
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',

@@ -24,9 +24,10 @@ const styles = {
     }
 };
 
-let emptyBoard = [[]];
-for (let i = 0; i < 8; i++)
-     emptyBoard[0].push(_.fill(Array(8), 0));
+let emptyBoard = [];
+for (let i = 0; i < 8; i++) {
+    emptyBoard.push(_.fill(Array(8), 0));
+}
 
 class App extends React.Component {
     constructor(props) {
@@ -42,13 +43,14 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            results: data,
-            submitted: true,
-            currentFrame: 0,
-            totalFrame: data.length,
-            playing: true
-        });
+        if (data && data.length > 0)
+            this.setState({
+                results: data,
+                submitted: true,
+                currentFrame: 0,
+                totalFrame: data.length,
+                playing: true
+            });
     }
 
     setCurrentFrame(newVal) {
@@ -67,18 +69,27 @@ class App extends React.Component {
     }
 
     render() {
-        let {board, score, player, stdout, position, message} =
-            this.state.results?
-                this.state.results[this.state.currentFrame]: [];
+        let result = {
+            board: emptyBoard,
+            score: [0,0],
+            player: 0,
+            stdout: '',
+            position: false
+        };
+
+        if (this.state.results)
+            result = _.defaults(this.state.results[this.state.currentFrame], result);
+
+        let {board, score, player, stdout, position, message} = result;
 
         return (
             <div style={styles.main}>
                 <Main
-                    board={board || emptyBoard}
-                    score={score || [0, 0]}
-                    player={player || 0}
-                    stdout={stdout || ''}
-                    position={position || false} />
+                    board={board}
+                    score={score}
+                    player={player}
+                    stdout={stdout}
+                    position={position} />
 
                 <Player
                     playing={this.state.playing}
