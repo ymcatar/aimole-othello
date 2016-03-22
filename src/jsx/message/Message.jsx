@@ -5,7 +5,12 @@ import { Dialog } from 'material-ui';
 const styles = {
     error: {
         textAlign: 'center',
-        fontWeight: 'lighter'
+        fontWeight: 'lighter',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        KhtmlUserSelect: 'none',
+        OUserSelect: 'none',
+        MozUserSelect: 'none'
     }
 };
 
@@ -20,6 +25,9 @@ export default class Message extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (_.isEqual(nextProps.message, this.props.message))
+            return;
+            
         let message = nextProps.message
             .filter(item => item !== 'ok')
             .map(item => {
