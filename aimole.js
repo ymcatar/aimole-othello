@@ -11,5 +11,4 @@ try {
 	aimole.display = JSON.parse(aimole.display);
 } catch (e) {
 	aimole.display = [];
-
 }
