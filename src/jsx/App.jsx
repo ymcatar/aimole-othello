@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import Main from 'game/Main.jsx';
 import Player from 'player/Player.jsx';
+import Message from 'message/Message.jsx';
 
 import data from './data';
 
@@ -55,7 +56,8 @@ class App extends React.Component {
             newVal = 0;
         else if (newVal > this.state.totalFrame - 1) {
             newVal = this.state.totalFrame - 1;
-            this.setState({playing: false});
+            this.setState({ playing: false, currentFrame: newVal });
+            return;
         }
         this.setState({ currentFrame: newVal });
     }
@@ -71,9 +73,7 @@ class App extends React.Component {
 
         return (
             <div style={styles.main}>
-
                 <Main
-                    message={message || []}
                     board={board || emptyBoard}
                     score={score || [0, 0]}
                     player={player || 0}
@@ -88,6 +88,8 @@ class App extends React.Component {
                     totalFrame={this.state.totalFrame}
                     submitted={this.state.submitted}
                     style={styles.player} />
+
+                <Message message={message || []} />
             </div>
         );
     }
