@@ -17,7 +17,6 @@ class Verdict:
         self.display = {}
 
     def send_action(self, action):
-#        self.log.write(json.dumps(action) + '\n')
         print(json.dumps(action))
 
     def report_error(self, error_message):
@@ -36,20 +35,11 @@ class Verdict:
                     'score' : self.score,
                     'display' : self.display,
                  }
-#        mp = {
-#                self.EMPTY : '.',
-#                self.BLACK : 'B',
-#                self.WHITE : 'W'
-#             }
-#        message = '\n'.join([''.join([mp[_] for _ in row]) for row in self.board]) + '\n'
-#        self.log.write(message)
-#        print(message)
         self.send_action(action)
 
     def query_command(self):
         json_string = raw_input()
         command = json.loads(json_string)
-#        self.log.write(json_string + '\n')
         return command
 
     def query_player(self, player):
@@ -60,7 +50,6 @@ class Verdict:
              }
         player_input = mp[player] + ' ' + mp[1 - player] + '\n'
         player_input += '\n'.join([''.join([mp[_] for _ in row]) for row in self.board]) + '\n'
- #       self.log.write(message)
         self.display['board'] = [[x + 1 for x in row] for row in self.board]
 
         action = {
@@ -71,7 +60,6 @@ class Verdict:
                  }
 
         self.send_action(action)
-#        print(message)
         return self.query_command()
 
     #return next player, return -1 if both can't move
@@ -128,43 +116,15 @@ class Verdict:
             return True
         return False
 
-    def prt(self):
-        return
-        mp = { self.EMPTY : ' ', self.BLACK : 'B', self.WHITE : 'W' }
-        self.out = open('out', 'a')
-        self.out.write('    0   1   2   3   4   5   6   7 \n')
-        self.out.write('  +---+---+---+---+---+---+---+---+\n')
-        for i in range(8):
-            a = [ mp[_] for _ in self.board[i] ]
-            self.out.write('%d | ' % i + ' | '.join(a) + ' |' + '\n')
-            self.out.write('  +---+---+---+---+---+---+---+---+\n')
-        self.out.write('\nPlayer O: %d\t\tPlayer @: %d\t\t\n\n' % (self.score[0], self.score[1]))
-        if (self.winner == -1):
-            self.out.write('Current Turn:  %s\n' % mp[self.turn])
-            self.out.write('Row: [0-7]: Column: [0-7]: ')
-        elif self.winner == 2:
-            self.out.write('Draw game!\n')
-        else:
-            self.out.write('Winner: Player %s!\n' % mp[self.winner])
-        self.out.close()
-
     def main(self):
-        #self.coor = open('coor', 'w')
-        #self.out = open('out', 'w')
-        #self.out.close()
-        #self.log = open('log', 'w')
         command = self.query_command()
         if command['command'] != 'start':
             self.report_error('Expect start command')
             return
         self.turn = 0
-     #   flag = 1
+
         #max number of turn is 60
         for i in range(60):
-       #     if flag:
-            #self.prt()
-      #      flag = 1
-
             command = self.query_player(self.turn)
 
             self.display = {
@@ -175,7 +135,9 @@ class Verdict:
             #Assuming command is either 'player', 'error' or 'terminated'
             #If command is 'error' or 'terminated', the other player win
             if command['command'] != 'player':
-                self.display['message'] = [(command['command'])]
+                #self.display['message'] = [(command['command'])] 
+                #hardcode to terminated
+                self.display['message'] = ['terminated']
                 self.winner = 1 - self.turn
                 break
             player = command['player']
@@ -184,7 +146,6 @@ class Verdict:
             self.display['stdout'] = command['stdout']
             try:
                 x, y = (int(_) for _ in command['stdout'].split())
-     #           self.coor.write(command['stdout'])
             except:
                 self.winner = 1 - self.turn
                 self.display['message'] = ['invalid %d' % (player + 1)]
@@ -193,8 +154,6 @@ class Verdict:
             self.display['position'] = [x, y]
 
             if not self.valid_move(player, x, y):
-     #           flag = 0
-     #           continue
                 self.winner = 1 - self.turn
                 self.display['message'] = ['invalid %d' % (player + 1)]
                 break
@@ -212,7 +171,6 @@ class Verdict:
 
         self.display['message'].append('draw' if self.winner == 2 else 'winner %d' % (self.winner + 1))
         self.report_winner()
-     #   self.prt()
 
 if __name__ == '__main__':
     verdict = Verdict()
