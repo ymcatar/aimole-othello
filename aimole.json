@@ -4,7 +4,7 @@
   "author": "",
   "version": "1.0.0",
   "viewUrl": "https://leoyuholo.com/aimole-othello/",
-  "bgUrl": "https://leoyuholo.com/aimole-othello/bg.png",
+  "bgUrl": "https://leoyuholo.com/aimole-othello/bg.jpg",
   "players": 2,
   "verdict": {
     "file": "verdict/verdict.py",
