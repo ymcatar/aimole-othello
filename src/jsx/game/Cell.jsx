@@ -7,22 +7,23 @@ const getCellStyle = (animation, val, isReversed) => {
     var style = {
         width: '5vh',
         height: '5vh',
-        borderRadius: '50%',
+        boxShadow: 'rgba(0, 0, 0, 0.156863) 0px 3px 6px, rgba(0, 0, 0, 0.14902) 0px 3px 6px',
+        borderRadius: '100%',
         transform: `rotateZ(45deg) scale(${pop}) rotateX(${isReversed? flip: 0}deg)`
     };
 
     switch(val) {
         case 1:
             style.backgroundColor = 'white';
-            style.border = `5px solid rgba(255, 50, 50, ${highlight})`;
+            style.border = `3px solid rgba(255, 50, 50, ${highlight})`;
             break;
         case 2:
             style.backgroundColor = 'black';
-            style.border = `5px solid rgba(255, 50, 50, ${highlight})`;
+            style.border = `3px solid rgba(255, 50, 50, ${highlight})`;
             break;
         default:
             style.backgroundColor = '#eee';
-            style.border = `5px solid white`;
+            style.border = `3px solid white`;
             break;
     }
     return style;

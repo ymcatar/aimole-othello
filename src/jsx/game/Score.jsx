@@ -3,13 +3,12 @@ import { CircularProgress } from 'material-ui';
 
 const styles = {
     main: {
-        borderTop: '3px solid rgba(255, 255, 255, 0.5)',
         width: '80vw',
         display: 'flex',
         justifyContent: 'center',
     },
     separator: {
-        borderLeft: '3px solid rgba(255, 255, 255, 0.5)',
+        borderLeft: '2px solid #3367D6',
         margin: '20px'
     },
     score: {

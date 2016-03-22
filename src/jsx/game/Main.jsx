@@ -8,7 +8,7 @@ const styles = {
     main: {
         height: 'calc(100vh - 60px)',
         width: '100vw',
-        background: 'linear-gradient(#413887, #39C8AE)',
+        background: 'linear-gradient(#1EBCD0, #4285F4)',
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',

@@ -25,8 +25,13 @@ const styles = {
     label: {
         marginLeft: '20px',
         width: '15px',
-        fontWeight: 'bold',
-        color: 'grey'
+        fontWeight: 'bolder',
+        color: 'grey',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        KhtmlUserSelect: 'none',
+        OUserSelect: 'none',
+        MozUserSelect: 'none'
     },
     specToggle: {
         margin: '0 0 0 20px'
