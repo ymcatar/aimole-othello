@@ -1,11 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
-import { Dialog } from 'material-ui';
+import { Dialog, FlatButton } from 'material-ui';
 
 const styles = {
     error: {
-        textAlign: 'center',
-        fontWeight: 'lighter',
+        textAlign: 'left',
         userSelect: 'none',
         WebkitUserSelect: 'none',
         KhtmlUserSelect: 'none',
@@ -15,7 +14,6 @@ const styles = {
 };
 
 export default class Message extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +25,7 @@ export default class Message extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (_.isEqual(nextProps.message, this.props.message))
             return;
-            
+
         let message = nextProps.message
             .filter(item => item !== 'ok')
             .map(item => {
@@ -65,9 +63,16 @@ export default class Message extends React.Component {
     }
 
     render() {
+        let actions = (
+            <FlatButton
+                label="Okay"
+                primary={true}
+                onTouchTap={() => {this.setState({show: false});}} />
+        );
         return (
             <Dialog
                 modal={false}
+                actions={actions}
                 open={this.state.show}
                 onRequestClose={() => {this.setState({show: false});}}>
                 <h1 style={styles.error}>
