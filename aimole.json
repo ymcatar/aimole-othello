@@ -10,6 +10,9 @@
     "file": "verdict/verdict.py",
     "language": "python"
   },
+  "codetpl": {
+    "c": "codetpl/tpl.c"
+  },
   "ai": [
     {
       "name": "randomplayer",
