@@ -10,7 +10,7 @@
     "file": "verdict/verdict.py",
     "language": "python"
   },
-  "codetpl": {
+  "codeTpl": {
     "c": "codetpl/tpl.c"
   },
   "ai": [
