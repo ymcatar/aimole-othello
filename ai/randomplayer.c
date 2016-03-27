@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<time.h>
 #include<stdlib.h>
 #define FOR(i,a,b) for (i = (a); i < (b); i++)
 #define N 8
@@ -25,6 +26,7 @@ int ok(int x, int y){
 }
 int main(){
 	int i, j;
+	srand(time(NULL));
 	while(1){
 		scanf("%s", s[0]);
 	if (s[0][0] == 'B'){
