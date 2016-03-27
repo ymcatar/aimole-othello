@@ -153,7 +153,12 @@ class Verdict:
             player = command['player']
             if player != self.turn:
                 break
-            self.display['stdout'] = command['stdout']
+
+            if len(command['stdout']) > 1000:
+                self.display['stdout'] = command['stdout'][:1000] + '...'
+            else:
+                self.display['stdout'] = command['stdout']
+
             try:
                 x, y = (int(_) for _ in command['stdout'].split())
             except:
