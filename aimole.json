@@ -1,0 +1,28 @@
+{
+  "name": "Othello",
+  "description": "Fun game.",
+  "author": "",
+  "version": "1.0.0",
+  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/ad1756f0addf374e20d61bc8fa90c02ccbb78bb1/dist/index.html",
+  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/ad1756f0addf374e20d61bc8fa90c02ccbb78bb1/dist/bg.jpg",
+  "players": 2,
+  "verdict": {
+    "file": "verdict/verdict.py",
+    "language": "python"
+  },
+  "codeTpl": {
+    "c": "codetpl/tpl.c"
+  },
+  "ai": [
+    {
+      "name": "randomplayer",
+      "file": "ai/randomplayer.c",
+      "language": "c"
+    },
+    {
+      "name": "easyplayer",
+      "file": "ai/easyplayer.c",
+      "language": "c"
+    }
+  ]
+}

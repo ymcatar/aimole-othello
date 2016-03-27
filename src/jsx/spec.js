@@ -35,7 +35,7 @@ where \`B\` means a black disc, \`W\` means a white disc and \`.\` means empty c
 You are going to implement an AI program to play this game. In each turn, if you can place a disc, your program will be asked for a move. Your program will receive information about the game board. Then your program should print the coordinate of the cell to place a disc.
 
 ### Time limit
-1000ms per turn
+2000ms per turn
 
 ### Input
 For each turn, there will be 9 lines of input.

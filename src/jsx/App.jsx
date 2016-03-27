@@ -9,6 +9,8 @@ import Message from 'message/Message.jsx';
 
 import data from './data';
 
+let gameData = window.aimole.display && window.aimole.display.length > 0 ? window.aimole.display : data
+
 injectTapEventPlugin();
 
 const styles = {
@@ -43,14 +45,13 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        if (data && data.length > 0)
-            this.setState({
-                results: data,
-                submitted: true,
-                currentFrame: 0,
-                totalFrame: data.length,
-                playing: true
-            });
+        this.setState({
+            results: gameData,
+            submitted: true,
+            currentFrame: 0,
+            totalFrame: gameData.length,
+            playing: true
+        });
     }
 
     setCurrentFrame(newVal) {
