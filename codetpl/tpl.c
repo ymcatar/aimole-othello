@@ -11,7 +11,7 @@ void compute(char board[8][8] , char me, char opponent, int* row, int* col) {
         *col = 3;
     } else {
         *row = 4;
-        *col = 5;
+        *col = 2;
     }
     return;
 }
@@ -20,15 +20,18 @@ int main() {
     char me, opponent;
     int x, y;
     char board[8][8];
+    char newline;
     int row, col;
 
     while (1) {
         // read my disc symbol and opponent's disc symbol
-        scanf("%c %c", &me, &opponent);
+        scanf("%c %c\n", &me, &opponent);
         // read game board
-        for (x = 0; x < 8; x++)
+        for (x = 0; x < 8; x++) {
             for (y = 0; y < 8; y++)
-                scanf("%c", &board[x][y]);
+                board[x][y] = getchar();
+            newline = getchar();
+        }
 
         // compute my move
         compute(board, me, opponent, &row, &col);
