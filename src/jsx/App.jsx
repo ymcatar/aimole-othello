@@ -45,14 +45,13 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        if (data && data.length > 0)
-            this.setState({
-                results: data,
-                submitted: true,
-                currentFrame: 0,
-                totalFrame: data.length,
-                playing: true
-            });
+        this.setState({
+            results: gameData,
+            submitted: true,
+            currentFrame: 0,
+            totalFrame: gameData.length,
+            playing: true
+        });
     }
 
     setCurrentFrame(newVal) {
@@ -76,13 +75,17 @@ class App extends React.Component {
             score: [0,0],
             player: 0,
             stdout: '',
-            position: false
+            position: false,
+            playerName: [
+                'Player 1',
+                'Player 2'
+            ] // to be replaced later
         };
 
         if (this.state.results)
             result = _.defaults(this.state.results[this.state.currentFrame], result);
 
-        let {board, score, player, stdout, position, message} = result;
+        let {board, score, player, stdout, position, message, playerName} = result;
 
         return (
             <div style={styles.main}>
@@ -91,7 +94,8 @@ class App extends React.Component {
                     score={score}
                     player={player}
                     stdout={stdout}
-                    position={position} />
+                    position={position}
+                    playerName={playerName} />
 
                 <Player
                     playing={this.state.playing}

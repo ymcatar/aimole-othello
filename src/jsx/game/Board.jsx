@@ -21,13 +21,28 @@ const styles = {
         color: 'white',
         fontWeight: 'lighter',
         fontSize: '3vh'
+    },
+    marker: {
+        width: '5vh',
+        height: '5vh',
+        fontSize: '3vh',
+        color: 'white',
+        fontWeight: 'bolder',
+        margin: '10px',
+        textAlign: 'center',
+        opacity: '0.2'
     }
 };
 
 export default class Board extends React.Component {
     render() {
+        let headerRow = [(<td />)];
+        for (let i = 0; i < 8; i++)
+            headerRow.push(<td style={styles.marker}>{i}</td>);
+
         let tbody = this.props.board.map((row, i) => (
             <tr key={`row${i}`}>
+                <td style={styles.marker}>{i}</td>
                 {row.map((cell, j) => {
                     let highlight = this.props.position &&
                         this.props.position[0] == i &&
@@ -43,6 +58,9 @@ export default class Board extends React.Component {
         return (
             <div style={styles.main}>
                 <table>
+                    <tr>
+                        {headerRow}
+                    </tr>
                     <tbody>{tbody}</tbody>
                 </table>
             </div>

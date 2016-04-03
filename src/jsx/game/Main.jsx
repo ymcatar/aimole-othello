@@ -40,7 +40,9 @@ export default class Main extends React.Component {
                     </MediaQuery>
                 </div>
                 <MediaQuery minHeight={500}>
-                    <Score score={this.props.score}/>
+                    <Score
+                        playerName={this.props.playerName}
+                        score={this.props.score} />
                 </MediaQuery>
             </div>
         );
