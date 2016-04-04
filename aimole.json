@@ -3,12 +3,15 @@
   "description": "Fun game.",
   "author": "",
   "version": "1.0.0",
-  "viewUrl": "http://leoyuholo.github.io/aimole-othello/",
-  "bgUrl": "http://leoyuholo.github.io/aimole-othello/bg.png",
+  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/a5d1aac2ba11c22c48a4beab32586c2bd6ab6492/index.html",
+  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/a5d1aac2ba11c22c48a4beab32586c2bd6ab6492/bg.jpg",
   "players": 2,
   "verdict": {
     "file": "verdict/verdict.py",
     "language": "python"
+  },
+  "codeTpl": {
+    "c": "codetpl/tpl.c"
   },
   "ai": [
     {
@@ -20,11 +23,6 @@
       "name": "easyplayer",
       "file": "ai/easyplayer.c",
       "language": "c"
-	},
-	{
-		"name": "normalplayer",
-		"file": "ai/normalplayer.c",
-		"language": "c"
-	}
+    }
   ]
 }

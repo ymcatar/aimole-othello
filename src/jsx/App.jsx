@@ -5,8 +5,11 @@ import _ from 'lodash';
 
 import Main from 'game/Main.jsx';
 import Player from 'player/Player.jsx';
+import Message from 'message/Message.jsx';
 
 import data from './data';
+
+let gameData = window.aimole.display && window.aimole.display.length > 0 ? window.aimole.display : data
 
 injectTapEventPlugin();
 
@@ -23,9 +26,10 @@ const styles = {
     }
 };
 
-let emptyBoard = [[]];
-for (let i = 0; i < 8; i++)
-     emptyBoard[0].push(_.fill(Array(8), 0));
+let emptyBoard = [];
+for (let i = 0; i < 8; i++) {
+    emptyBoard.push(_.fill(Array(8), 0));
+}
 
 class App extends React.Component {
     constructor(props) {
@@ -42,10 +46,10 @@ class App extends React.Component {
 
     componentDidMount() {
         this.setState({
-            results: data,
+            results: gameData,
             submitted: true,
             currentFrame: 0,
-            totalFrame: data.length,
+            totalFrame: gameData.length,
             playing: true
         });
     }
@@ -55,7 +59,8 @@ class App extends React.Component {
             newVal = 0;
         else if (newVal > this.state.totalFrame - 1) {
             newVal = this.state.totalFrame - 1;
-            this.setState({playing: false});
+            this.setState({ playing: false, currentFrame: newVal });
+            return;
         }
         this.setState({ currentFrame: newVal });
     }
@@ -65,20 +70,32 @@ class App extends React.Component {
     }
 
     render() {
-        let {board, score, player, stdout, position, message} =
-            this.state.results?
-                this.state.results[this.state.currentFrame]: [];
+        let result = {
+            board: emptyBoard,
+            score: [0,0],
+            player: 0,
+            stdout: '',
+            position: false,
+            playerName: [
+                'Player 1',
+                'Player 2'
+            ] // to be replaced later
+        };
+
+        if (this.state.results)
+            result = _.defaults(this.state.results[this.state.currentFrame], result);
+
+        let {board, score, player, stdout, position, message, playerName} = result;
 
         return (
             <div style={styles.main}>
-
                 <Main
-                    message={message || []}
-                    board={board || emptyBoard}
-                    score={score || [0, 0]}
-                    player={player || 0}
-                    stdout={stdout || ''}
-                    position={position || false} />
+                    board={board}
+                    score={score}
+                    player={player}
+                    stdout={stdout}
+                    position={position}
+                    playerName={playerName} />
 
                 <Player
                     playing={this.state.playing}
@@ -88,6 +105,8 @@ class App extends React.Component {
                     totalFrame={this.state.totalFrame}
                     submitted={this.state.submitted}
                     style={styles.player} />
+
+                <Message message={message || []} />
             </div>
         );
     }

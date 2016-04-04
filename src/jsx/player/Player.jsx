@@ -25,8 +25,13 @@ const styles = {
     label: {
         marginLeft: '20px',
         width: '15px',
-        fontWeight: 'bold',
-        color: 'grey'
+        fontWeight: 'bolder',
+        color: 'grey',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        KhtmlUserSelect: 'none',
+        OUserSelect: 'none',
+        MozUserSelect: 'none'
     },
     specToggle: {
         margin: '0 0 0 20px'
@@ -44,12 +49,9 @@ const styles = {
 };
 
 export default class Player extends React.Component {
-
     constructor(props) {
         super(props);
-        this.state = {
-            open: false
-        };
+        this.state = { open: false };
         _.bindAll(this, [
             'handleSpecToggle',
             'handlePrev',
@@ -95,27 +97,31 @@ export default class Player extends React.Component {
     }
 
     render() {
+        let { playing, currentFrame, totalFrame, submitted } = this.props;
+        let begin = (currentFrame === 0);
+        let end = (currentFrame >= totalFrame - 1);
+
         return (
             <Paper style={styles.player}>
                 <IconButton
-                    disabled={!this.props.submitted}
+                    disabled={!submitted || begin}
                     onTouchTap={this.handlePrev}
                     iconClassName="material-icons">
                     fast_rewind
                 </IconButton>
 
                 <FloatingActionButton
-                    disabled={!this.props.submitted}
-                    onTouchTap={this.handlePlay}
                     mini={true}
-                    primary={true}>
+                    primary={true}
+                    disabled={!submitted || end}
+                    onTouchTap={this.handlePlay} >
                     <FontIcon className="material-icons">
-                        {this.props.playing? 'pause' : 'play_arrow'}
+                        {playing? 'pause': 'play_arrow'}
                     </FontIcon>
                 </FloatingActionButton>
 
                 <IconButton
-                    disabled={!this.props.submitted}
+                    disabled={!submitted || end}
                     onTouchTap={this.handleNext}
                     iconClassName="material-icons">
                     fast_forward
@@ -123,22 +129,22 @@ export default class Player extends React.Component {
 
                 <div style={styles.sliderContainer}>
                     <Slider
-                        disabled={!this.props.submitted}
+                        disabled={!submitted}
                         onChange={this.handleSliderChange}
-                        value={this.props.currentFrame/(this.props.totalFrame-1)}
-                        step={1/(this.props.totalFrame-1)}
+                        value={currentFrame/(totalFrame-1)}
+                        step={1/(totalFrame-1)}
                         style={styles.slider} />
                 </div>
 
                 <p style={styles.label}>
-                    {this.props.submitted? `${this.props.currentFrame + 1}/${this.props.totalFrame}`: '-/-'}
+                    {submitted? `${currentFrame + 1}/${totalFrame}`: '-/-'}
                 </p>
 
                 <IconButton
                     style={styles.specToggle}
                     iconStyle={styles.specIcon}
                     tooltip={<p>Show specifications</p>}
-                    tooltipPosition="top-right"
+                    tooltipPosition="top-left"
                     onTouchTap={this.handleSpecToggle}
                     iconClassName="material-icons">
                     insert_comment
@@ -150,9 +156,7 @@ export default class Player extends React.Component {
                     bodyStyle={styles.spec}
                     bodyClassName="markdown-body"
                     onRequestClose={this.handleSpecToggle}>
-                    <div dangerouslySetInnerHTML={{
-                        __html: marked(spec.message)
-                    }} />
+                    <div dangerouslySetInnerHTML={{__html: marked(spec.message)}} />
                 </Dialog>
             </Paper>
         );

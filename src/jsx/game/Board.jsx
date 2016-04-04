@@ -1,13 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
-import { Dialog } from 'material-ui';
-
 import Cell from 'game/Cell.jsx';
 
 const styles = {
     main: {
         height: '70vh',
-        width: '100vw',
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-end',
@@ -25,82 +22,34 @@ const styles = {
         fontWeight: 'lighter',
         fontSize: '3vh'
     },
-    error: {
+    marker: {
+        width: '5vh',
+        height: '5vh',
+        fontSize: '3vh',
+        color: 'white',
+        fontWeight: 'bolder',
+        margin: '10px',
         textAlign: 'center',
-        fontWeight: 'lighter'
+        opacity: '0.2'
     }
 };
 
 export default class Board extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: false
-        };
-        _.bindAll(this, ['hideError']);
-    }
-
-    hideError() {
-        this.setState({
-            error: false,
-            message: null
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        let message = nextProps.message
-            .filter(item => item !== 'ok')
-            .map(item => {
-                let [first, second] = item.split(' ');
-                switch (first) {
-                    case 'winner':
-                        if (second == '1')
-                            return `Black wins.`;
-                        else if (second == '2')
-                            return `White wins.`;
-                        break;
-
-                    case 'draw':
-                        return `Draw!`;
-
-                    case 'invalid':
-                        if (second == '1')
-                            return `Black performs an invalid move.`;
-                        else if (second == '2')
-                            return `White performs an invalid move.`;
-                        break;
-
-                    case 'terminated':
-                        return 'Program terminated unexpectedly.';
-                }
-            });
-
-        if (message.length !== 0)
-            this.setState({
-                error: true,
-                message: message.join(' ')
-            });
-        else
-            this.setState({
-                error: false,
-                message: null
-            });
-    }
-
     render() {
+        let headerRow = [(<td />)];
+        for (let i = 0; i < 8; i++)
+            headerRow.push(<td style={styles.marker}>{i}</td>);
+
         let tbody = this.props.board.map((row, i) => (
             <tr key={`row${i}`}>
+                <td style={styles.marker}>{i}</td>
                 {row.map((cell, j) => {
                     let highlight = this.props.position &&
                         this.props.position[0] == i &&
                         this.props.position[1] == j;
                     return (
-                        <td style={styles.td}>
-                            <Cell
-                                key={`cell${i}${j}`}
-                                highlight={highlight}
-                                val={cell} />
+                        <td key={`cell${i}${j}`} style={styles.td}>
+                            <Cell highlight={highlight} val={cell} />
                         </td>
                     );
                 })}
@@ -109,18 +58,11 @@ export default class Board extends React.Component {
         return (
             <div style={styles.main}>
                 <table>
-                    <tbody>
-                        {tbody}
-                    </tbody>
+                    <tr>
+                        {headerRow}
+                    </tr>
+                    <tbody>{tbody}</tbody>
                 </table>
-                <Dialog
-                    modal={false}
-                    open={this.state.error}
-                    onRequestClose={this.hideError}>
-                    <h1 style={styles.error}>
-                        {this.state.message}
-                    </h1>
-                </Dialog>
             </div>
         );
     }
