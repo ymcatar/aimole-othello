@@ -34,6 +34,7 @@ class App extends React.Component {
                 <div style={styles.main}>
                     <Main />
                     <Player />
+                    <Message />
                 </div>
             </Provider>
         );
