@@ -33,7 +33,7 @@ class Stdout extends React.Component {
 
 export default connect(
     function stateToProps(state) {
-        if (state.initialized)
+        if (state.initialized && state.data[state.currentFrame])
             return {
                 stdout: state.data[state.currentFrame].stdout
             };

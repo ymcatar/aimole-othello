@@ -38,20 +38,20 @@ const styles = {
 
 class Board extends React.Component {
     render() {
-        let headerRow = [(<td />)];
+        let headerRow = [(<td key={'header_blank'}/>)];
         for (let i = 0; i < 8; i++)
             headerRow.push(<td style={styles.marker} key={'header_'+i}>{i}</td>);
 
         let tbody = this.props.board.map((row, i) => (
             <tr key={`row_${i}`}>
-                <td style={styles.marker}>{i}</td>
+                <td key={`marker_${i}`} style={styles.marker}>{i}</td>
                 {row.map((cell, j) => {
                     let highlight = this.props.position &&
                         this.props.position[0] == i &&
                         this.props.position[1] == j;
                     return (
-                        <td key={`cell_${8*i+j}`} style={styles.td}>
-                            <Cell highlight={highlight} val={cell} />
+                        <td key={`td_${8*i+j}`} style={styles.td}>
+                            <Cell key={`cell_${8*i+j}`} highlight={highlight} val={cell} />
                         </td>
                     );
                 })}
@@ -77,7 +77,7 @@ for (let i = 0; i < 8; i++) {
 
 export default connect (
     function stateToProps(state) {
-        if (state.initialized) {
+        if (state.initialized && state.data[state.currentFrame]) {
             let { board, position } = state.data[state.currentFrame];
             return { board, position };
         } else
