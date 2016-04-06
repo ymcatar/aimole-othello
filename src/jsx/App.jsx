@@ -9,7 +9,7 @@ import Message from 'message/Message.jsx';
 
 import data from './data';
 
-let gameData = window.aimole.display && window.aimole.display.length > 0 ? window.aimole.display : data
+let gameData = window.aimole.display && window.aimole.display.length > 0 ? window.aimole.display : data;
 
 injectTapEventPlugin();
 
@@ -79,11 +79,14 @@ class App extends React.Component {
             playerName: [
                 'Player 1',
                 'Player 2'
-            ] // to be replaced later
+            ]
         };
 
-        if (this.state.results)
+        if (this.state.results) {
+            let [ playerA, playerB ] = this.state.results[0].players;
+            result.playerName = [playerA, playerB];
             result = _.defaults(this.state.results[this.state.currentFrame], result);
+        }
 
         let {board, score, player, stdout, position, message, playerName} = result;
 
