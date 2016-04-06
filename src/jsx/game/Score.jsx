@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { CircularProgress } from 'material-ui';
 
 const styles = {
@@ -39,9 +40,9 @@ const styles = {
     })
 };
 
-export default class Score extends React.Component {
+class Score extends React.Component {
     render() {
-        let [black, white] = this.props.score;
+        let [black, white] = this.props.score || [0, 0];
         return (
             <div style={styles.main}>
                 <div style={styles.score}>
@@ -75,3 +76,21 @@ export default class Score extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        if (state.initialized) {
+            return {
+                score: state.data[state.currentFrame].score,
+                playerName: state.playerName
+            };
+        } else
+            return {
+                score: [0, 0],
+                playerName: ['Player 1', 'Player 2']
+            };
+    },
+    function dispatchToProps(dispatch) {
+        return {};
+    }
+)(Score);

@@ -1,6 +1,9 @@
 import React from 'react';
-import {Paper, FloatingActionButton, FontIcon, IconButton, Slider, Dialog} from 'material-ui';
+import { connect } from 'react-redux';
+import { Paper, FloatingActionButton, FontIcon, IconButton, Slider, Dialog } from 'material-ui';
 import _ from 'lodash';
+
+import { setPlay, setCurrentFrame, fetchData } from 'redux/actions';
 
 import marked from 'marked';
 
@@ -48,7 +51,8 @@ const styles = {
     }
 };
 
-export default class Player extends React.Component {
+class Player extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = { open: false };
@@ -59,6 +63,10 @@ export default class Player extends React.Component {
             'handlePlay',
             'handleSliderChange'
         ]);
+    }
+
+    componentWillMount() {
+        this.props.fetchData();
     }
 
     handleSpecToggle(e) {
@@ -97,14 +105,14 @@ export default class Player extends React.Component {
     }
 
     render() {
-        let { playing, currentFrame, totalFrame, submitted } = this.props;
+        let { playing, currentFrame, totalFrame, initialized } = this.props;
         let begin = (currentFrame === 0);
         let end = (currentFrame >= totalFrame - 1);
 
         return (
             <Paper style={styles.player}>
                 <IconButton
-                    disabled={!submitted || begin}
+                    disabled={!initialized || begin}
                     onTouchTap={this.handlePrev}
                     iconClassName="material-icons">
                     fast_rewind
@@ -113,7 +121,7 @@ export default class Player extends React.Component {
                 <FloatingActionButton
                     mini={true}
                     primary={true}
-                    disabled={!submitted || end}
+                    disabled={!initialized || end}
                     onTouchTap={this.handlePlay} >
                     <FontIcon className="material-icons">
                         {playing? 'pause': 'play_arrow'}
@@ -121,7 +129,7 @@ export default class Player extends React.Component {
                 </FloatingActionButton>
 
                 <IconButton
-                    disabled={!submitted || end}
+                    disabled={!initialized || end}
                     onTouchTap={this.handleNext}
                     iconClassName="material-icons">
                     fast_forward
@@ -129,7 +137,7 @@ export default class Player extends React.Component {
 
                 <div style={styles.sliderContainer}>
                     <Slider
-                        disabled={!submitted}
+                        disabled={!initialized}
                         onChange={this.handleSliderChange}
                         value={currentFrame/(totalFrame-1)}
                         step={1/(totalFrame-1)}
@@ -137,7 +145,7 @@ export default class Player extends React.Component {
                 </div>
 
                 <p style={styles.label}>
-                    {submitted? `${currentFrame + 1}/${totalFrame}`: '-/-'}
+                    {initialized? `${currentFrame + 1}/${totalFrame}`: '-/-'}
                 </p>
 
                 <IconButton
@@ -162,3 +170,21 @@ export default class Player extends React.Component {
         );
     }
 }
+
+export default connect (
+    function stateToProps(state) {
+        return {
+            currentFrame: state.currentFrame,
+            totalFrame: state.totalFrame,
+            initialized: state.initialized,
+            playing: state.playing
+        };
+    },
+    function dispatchToProps(dispatch) {
+        return {
+            setPlay: val => dispatch(setPlay(val)),
+            setCurrentFrame: val => dispatch(setCurrentFrame(val)),
+            fetchData: () => dispatch(fetchData())
+        };
+    }
+)(Player);

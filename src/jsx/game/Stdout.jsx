@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 
 const styles = {
@@ -16,7 +17,7 @@ const styles = {
     }
 };
 
-export default class Stdout extends React.Component {
+class Stdout extends React.Component {
     render() {
         let { stdout } = this.props;
         return (
@@ -29,3 +30,19 @@ export default class Stdout extends React.Component {
         );
     }
 }
+
+export default connect(
+    function stateToProps(state) {
+        if (state.initialized)
+            return {
+                stdout: state.data[state.currentFrame].stdout
+            };
+        else
+            return {
+                stdout: ''
+            };
+    },
+    function dispatchToProps(dispatch) {
+        return {};
+    }
+)(Stdout);
