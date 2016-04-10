@@ -179,7 +179,7 @@ class Verdict:
             if self.turn == -1:
                 break
 
-        self.good_game = self.winner == -1 ? True : False
+        self.good_game = True if self.winner == -1 else False
         if self.winner == -1:
             if self.score[0] != self.score[1]:
                 self.winner = 1 if self.score[1] > self.score[0] else 0
