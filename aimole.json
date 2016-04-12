@@ -23,6 +23,11 @@
       "name": "easyplayer",
       "file": "ai/easyplayer.c",
       "language": "c"
+    },
+    {
+      "name": "normalplayer",
+      "file": "ai/normalplayer.c",
+      "language": "c"
     }
   ]
 }

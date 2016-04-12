@@ -34,6 +34,7 @@ class Verdict:
                     'winner' : self.winner,
                     'score' : self.score,
                     'display' : self.display,
+                    'goodGame' : self.good_game
                  }
         self.send_action(action)
 
@@ -178,13 +179,12 @@ class Verdict:
             if self.turn == -1:
                 break
 
+        self.good_game = True if self.winner == -1 else False
         if self.winner == -1:
-            if self.score[0] == self.score[1]:
-                self.winner = 2
-            else:
+            if self.score[0] != self.score[1]:
                 self.winner = 1 if self.score[1] > self.score[0] else 0
 
-        self.display['message'].append('draw' if self.winner == 2 else 'winner %d' % (self.winner + 1))
+        self.display['message'].append('draw' if self.winner == -1 else 'winner %d' % (self.winner + 1))
         self.report_winner()
 
 if __name__ == '__main__':
