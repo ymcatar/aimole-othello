@@ -6,6 +6,10 @@
   "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/a5d1aac2ba11c22c48a4beab32586c2bd6ab6492/index.html",
   "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/a5d1aac2ba11c22c48a4beab32586c2bd6ab6492/bg.jpg",
   "players": 2,
+  "ranking": {
+    "scheme": "elo",
+    "baseScore": 1000
+  },
   "verdict": {
     "file": "verdict/verdict.py",
     "language": "python"
