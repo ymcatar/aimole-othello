@@ -28,6 +28,11 @@ export default function reducer(prevState, action) {
             return state;
         }
 
+        case actions.RECEIVE_FRAME: {
+            state.data.push(action.data);
+            return state;
+        }
+
         case actions.SET_CURRENT_FRAME: {
             let val = action.data;
             /* current frame logic */

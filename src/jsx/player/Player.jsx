@@ -67,6 +67,7 @@ class Player extends React.Component {
 
     componentWillMount() {
         this.props.fetchData();
+        this.props.startStream();
         this.props.setPlay(true);
     }
 

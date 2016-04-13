@@ -10,8 +10,6 @@ import Main from 'game/Main.jsx';
 import Player from 'player/Player.jsx';
 import Message from 'message/Message.jsx';
 
-import data from './data';
-
 injectTapEventPlugin();
 
 const styles = {
