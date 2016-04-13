@@ -3,8 +3,8 @@
   "description": "Fun game.",
   "author": "",
   "version": "1.0.0",
-  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/15e1626fec559112a26ba384bf258e64b3092593/dist/index.html",
-  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/15e1626fec559112a26ba384bf258e64b3092593/dist/bg.jpg",
+  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/fda2070095df9a57af80d1a354068de18d27cdeb/dist/index.html",
+  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/fda2070095df9a57af80d1a354068de18d27cdeb/dist/bg.jpg",
   "players": 2,
   "ranking": {
     "scheme": "elo",
