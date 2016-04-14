@@ -14,7 +14,7 @@ const receiveFrame = data => ({ type: RECEIVE_FRAME, data });
 export const startStream = () => {
     return function(dispatch) {
         window.addEventListener('newframe', e => {
-            conosle.log(e.detail);
+            console.log(e.detail);
             dispatch(e.detail);
         });
     };
