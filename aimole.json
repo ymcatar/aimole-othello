@@ -3,9 +3,13 @@
   "description": "Fun game.",
   "author": "",
   "version": "1.0.0",
-  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/ad1756f0addf374e20d61bc8fa90c02ccbb78bb1/dist/index.html",
-  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/ad1756f0addf374e20d61bc8fa90c02ccbb78bb1/dist/bg.jpg",
+  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/799530606606814fccdbe7fc0ce1a4a2d826c6c8/dist/index.html",
+  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/799530606606814fccdbe7fc0ce1a4a2d826c6c8/dist/bg.jpg",
   "players": 2,
+  "ranking": {
+    "scheme": "elo",
+    "baseScore": 1000
+  },
   "verdict": {
     "file": "verdict/verdict.py",
     "language": "python"
@@ -22,6 +26,11 @@
     {
       "name": "easyplayer",
       "file": "ai/easyplayer.c",
+      "language": "c"
+    },
+    {
+      "name": "normalplayer",
+      "file": "ai/normalplayer.c",
       "language": "c"
     }
   ]
