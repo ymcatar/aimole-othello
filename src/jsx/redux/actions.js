@@ -16,10 +16,10 @@ const endStream = () => ({ type: END_STREAM });
 
 export const startStream = () => {
     return function(dispatch) {
-        window.addEventListener('newframe', e => {
-            dispatch(receiveFrame(e.detail));
+        window.aimole.on('display', e => {
+            dispatch(receiveFrame(e));
         });
-        window.addEventListener('end', e => {
+        window.aimole.on('end', e => {
             dispatch(endStream());
         });
     };

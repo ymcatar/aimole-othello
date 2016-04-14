@@ -6,7 +6,7 @@ let initialState = {
     currentFrame: 0,
     totalFrame: 0,
     playing: false,
-    player: ['Player 1', 'Player 2'],
+    playerName: ['Player 1', 'Player 2'],
     data: [],
     ended: false
 };
@@ -42,6 +42,7 @@ export default function reducer(prevState, action) {
         }
 
         case actions.RECEIVE_FRAME: {
+            let playerOne, playerTwo;
             if (action.data && action.data.players) {
                 [playerOne, playerTwo] = action.data.players;
                 state.playerName = [playerOne.name, playerTwo.name];
