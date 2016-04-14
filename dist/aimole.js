@@ -3,26 +3,27 @@
 	'use strict';
 
 	var parseParams = () => {
-		var hash = window.location.hash.replace(/^#/, '');
-		if (!hash) return {};
-
-		var params = {};
-
-		hash = hash.split('&');
-
-		hash.forEach(function(item) {
-			item = item.split("=");
-			params[item[0]] = JSON.parse(decodeURIComponent(item[1]));
-		});
-
-		console.log(params);
-		return params;
+	        var vars = window.location.hash.replace(/^#/, '').split('&');
+	        var params = {};
+	        for(var i = 0, l = vars.length; i < l; i++) {
+	            if(vars[i] !== '') {
+	                var pair = vars[i].split('=');
+	                if(pair[0]) params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+	            }
+	        }
+	        return params;
 	};
 
 	var aimole = parseParams();
-	console.log('aimole', aimole);
-	if (aimole.display) {
-		console.log('aimole.display', aimole.display);
+    console.log('aimole', aimole);
+    if (aimole.display) {
+        try {
+            aimole.display = JSON.parse(aimole.display);
+        } catch (err) {
+            console.error(err, 'JSON string: ' + aimole.display);
+            aimole.display = [];
+        }
+        console.log('aimole.display', aimole.display);
 	} else if (aimole.streamUrl && aimole.matchId) {
 		aimole.display = [];
 		io(aimole.streamUrl, {query: 'matchId=' + aimole.matchId})

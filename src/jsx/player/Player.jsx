@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Paper, FloatingActionButton, FontIcon, IconButton, Slider, Dialog } from 'material-ui';
 import _ from 'lodash';
 
-import { setPlay, setCurrentFrame, fetchData } from 'redux/actions';
+import { setPlay, setCurrentFrame, fetchData, startStream } from 'redux/actions';
 
 import marked from 'marked';
 
@@ -186,7 +186,8 @@ export default connect (
         return {
             setPlay: val => dispatch(setPlay(val)),
             setCurrentFrame: val => dispatch(setCurrentFrame(val)),
-            fetchData: () => dispatch(fetchData())
+            fetchData: () => dispatch(fetchData()),
+            startStream: () => dispatch(startStream())
         };
     }
 )(Player);
