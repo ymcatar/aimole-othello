@@ -17,10 +17,12 @@ const styles = {
     },
     grey: color => ({
         opacity: 0.2,
-        color: color? 'white': 'black'
+        color: color? 'white': 'black',
+        fontWeight: 'bolder'
     }),
     normal: color => ({
-        color: !color? 'white': 'black'
+        color: !color? 'white': 'black',
+        fontWeight: 'bolder'
     })
 };
 
@@ -55,7 +57,7 @@ export default connect(
                     state.data[state.currentFrame].stdout,
                     state.currentFrame + 1 < state.totalFrame? state.data[state.currentFrame+1].stdout: null,
                 ],
-                isWhite: state.currentFrame%2 === 0
+                isWhite: state.data[state.currentFrame].player === 1
             };
         else
             return {

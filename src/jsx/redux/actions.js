@@ -1,8 +1,10 @@
+let { aimole, display } = require('../../aimole');
+
 export const RECEIVE_DATA = 'actions: receive data';
 const receiveData = data => ({ type: RECEIVE_DATA, data });
 
 export const fetchData = () => {
-    let data = window.aimole.display && window.aimole.display.length > 0 ? window.aimole.display: [];
+    let data = display && display.length > 0 ? display: [];
     return function(dispatch) {
         dispatch(receiveData(data));
     };
@@ -16,10 +18,11 @@ const endStream = () => ({ type: END_STREAM });
 
 export const startStream = () => {
     return function(dispatch) {
-        window.aimole.on('display', e => {
+        console.log(aimole);
+        aimole.on('display', e => {
             dispatch(receiveFrame(e));
         });
-        window.aimole.on('end', e => {
+        aimole.on('end', e => {
             dispatch(endStream());
         });
     };

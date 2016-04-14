@@ -99,17 +99,17 @@ class Player extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.interval && !this.props.playing)
+        if (this.interval && !this.props.playing) {
             clearInterval(this.interval);
-        else if (this.interval)
-            return;
-
-        this.interval = setInterval(() => {
-            if (this.props.currentFrame < this.props.totalFrame)
-                this.props.setCurrentFrame(this.props.currentFrame + 1);
-            else if (this.props.ended)
-                clearInterval(this.interval);
-        }, 2000);
+            delete this.interval;
+        }
+        else if (!this.interval)
+            this.interval = setInterval(() => {
+                if (this.props.currentFrame < this.props.totalFrame)
+                    this.props.setCurrentFrame(this.props.currentFrame + 1);
+                else if (this.props.ended)
+                    clearInterval(this.interval);
+            }, 2000);
     }
 
     render() {
