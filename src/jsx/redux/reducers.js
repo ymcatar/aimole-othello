@@ -31,8 +31,6 @@ export default function reducer(prevState, action) {
             else
                 state.playerName = ['Player 1', 'Player 2'];
 
-            action.data.shift();
-
             state.initialized = true;
             state.data = action.data;
             state.totalFrame = action.data.length;
@@ -46,7 +44,6 @@ export default function reducer(prevState, action) {
             if (action.data && action.data.players) {
                 [playerOne, playerTwo] = action.data.players;
                 state.playerName = [playerOne.name, playerTwo.name];
-                return state;
             }
 
             state.initialized = true;
