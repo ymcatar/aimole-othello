@@ -34,7 +34,9 @@ export default function reducer(prevState, action) {
         }
 
         case actions.RECEIVE_FRAME: {
+            state.initialized = true;
             state.data.push(action.data);
+            state.totalFrame++;
             return state;
         }
 
