@@ -11,11 +11,16 @@ export const fetchData = () => {
 export const RECEIVE_FRAME = 'actions: receive frame';
 const receiveFrame = data => ({ type: RECEIVE_FRAME, data });
 
+export const END_STREAM = 'actions: end streaming';
+const endStream = () => ({ type: END_STREAM });
+
 export const startStream = () => {
     return function(dispatch) {
         window.addEventListener('newframe', e => {
-            console.log(e.detail);
             dispatch(receiveFrame(e.detail));
+        });
+        window.addEventListener('end', e => {
+            dispatch(endStream());
         });
     };
 };

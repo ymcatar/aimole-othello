@@ -99,22 +99,28 @@ class Player extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.props.playing && this.props.currentFrame < this.props.totalFrame)
-            setTimeout(() => {
-                if (this.props.playing)
-                    this.props.setCurrentFrame(this.props.currentFrame + 1);
-            }, 1500);
+        if (this.interval && !this.props.playing)
+            clearInterval(this.interval);
+        else if (this.interval)
+            return;
+
+        this.interval = setInterval(() => {
+            if (this.props.currentFrame < this.props.totalFrame)
+                this.props.setCurrentFrame(this.props.currentFrame + 1);
+            else if (this.props.ended)
+                clearInterval(this.interval);
+        }, 2000);
     }
 
     render() {
-        let { playing, currentFrame, totalFrame, initialized } = this.props;
+        let { playing, currentFrame, totalFrame, initialized, ended } = this.props;
         let begin = (currentFrame === 0);
         let end = (currentFrame >= totalFrame - 1);
 
         return (
             <Paper style={styles.player}>
                 <IconButton
-                    disabled={!initialized || begin}
+                    disabled={!initialized || begin || !ended}
                     onTouchTap={this.handlePrev}
                     iconClassName="material-icons">
                     fast_rewind
@@ -131,7 +137,7 @@ class Player extends React.Component {
                 </FloatingActionButton>
 
                 <IconButton
-                    disabled={!initialized || end}
+                    disabled={!initialized || !ended}
                     onTouchTap={this.handleNext}
                     iconClassName="material-icons">
                     fast_forward
@@ -139,7 +145,7 @@ class Player extends React.Component {
 
                 <div style={styles.sliderContainer}>
                     <Slider
-                        disabled={!initialized}
+                        disabled={!initialized || !ended}
                         onChange={this.handleSliderChange}
                         value={currentFrame/(totalFrame-1)}
                         step={1/(totalFrame-1)}
@@ -179,7 +185,8 @@ export default connect (
             currentFrame: state.currentFrame,
             totalFrame: state.totalFrame,
             initialized: state.initialized,
-            playing: state.playing
+            playing: state.playing,
+            ended: state.ended
         };
     },
     function dispatchToProps(dispatch) {

@@ -27,7 +27,7 @@ class Message extends React.Component {
         if (_.isEqual(nextProps.message, this.props.message))
             return;
 
-        let message = nextProps.message
+        let message = nextProps.message? nextProps.message
             .filter(item => item !== 'ok')
             .map(item => {
                 let [first, second] = item.split(' ');
@@ -55,7 +55,7 @@ class Message extends React.Component {
                     default:
                         return false;
                 }
-            });
+            }): [];
 
         if (message.length !== 0) {
             this.setState({ show: true, message: message.join(' ') });
