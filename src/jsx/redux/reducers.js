@@ -20,10 +20,10 @@ export default function reducer(prevState, action) {
             state.data = action.data;
             state.totalFrame = action.data.length;
 
-            // let [playerOne, playerTwo] = action.data[0].players;
-            // state.playerName = [playerOne.name, playerTwo.name];
+            let [playerOne, playerTwo] = action.data[0].players;
+            state.playerName = [playerOne.name, playerTwo.name];
 
-            state.playerName = ['Player 1', 'Player 2'];
+            // state.playerName = ['Player 1', 'Player 2'];
 
             return state;
         }
