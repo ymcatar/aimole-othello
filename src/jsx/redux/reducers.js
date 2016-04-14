@@ -21,10 +21,6 @@ export default function reducer(prevState, action) {
             if (!action.data || action.data.length <= 0)
                 return state;
 
-            state.initialized = true;
-            state.data = action.data;
-            state.totalFrame = action.data.length;
-
             let playerOne, playerTwo;
 
             if (action.data && action.data[0] && action.data[0].players)
@@ -35,19 +31,22 @@ export default function reducer(prevState, action) {
             else
                 state.playerName = ['Player 1', 'Player 2'];
 
+            action.data.shift();
+
+            state.initialized = true;
+            state.data = action.data;
+            state.totalFrame = action.data.length;
+
             state.ended = true;
             return state;
         }
 
         case actions.RECEIVE_FRAME: {
-            let playerOne, playerTwo;
-            if (action.data && action.data.players)
+            if (action.data && action.data.players) {
                 [playerOne, playerTwo] = action.data.players;
-
-            if (playerOne && playerTwo)
                 state.playerName = [playerOne.name, playerTwo.name];
-            else
-                state.playerName = ['Player 1', 'Player 2'];
+                return state;
+            }
 
             state.initialized = true;
             state.data.push(action.data);
