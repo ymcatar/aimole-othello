@@ -15,7 +15,7 @@ export const startStream = () => {
     return function(dispatch) {
         window.addEventListener('newframe', e => {
             console.log(e.detail);
-            dispatch(e.detail);
+            dispatch(receiveFrame(e.detail));
         });
     };
 };
