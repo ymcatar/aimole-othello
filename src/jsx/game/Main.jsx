@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import MediaQuery from 'react-responsive';
 
 import Score from 'game/Score.jsx';
@@ -32,17 +33,13 @@ export default class Main extends React.Component {
         return (
             <div style={styles.main}>
                 <div style={styles.column}>
-                    <Board style={styles.board} {... this.props}/>
+                    <Board style={styles.board} />
                     <MediaQuery minHeight={500}>
-                        <Stdout
-                            style={styles.stdout}
-                            stdout={this.props.stdout} />
+                        <Stdout style={styles.stdout} />
                     </MediaQuery>
                 </div>
                 <MediaQuery minHeight={500}>
-                    <Score
-                        playerName={this.props.playerName}
-                        score={this.props.score} />
+                    <Score />
                 </MediaQuery>
             </div>
         );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Dialog, FlatButton } from 'material-ui';
 
@@ -13,7 +14,7 @@ const styles = {
     }
 };
 
-export default class Message extends React.Component {
+class Message extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +27,7 @@ export default class Message extends React.Component {
         if (_.isEqual(nextProps.message, this.props.message))
             return;
 
-        let message = nextProps.message
+        let message = nextProps.message? nextProps.message
             .filter(item => item !== 'ok')
             .map(item => {
                 let [first, second] = item.split(' ');
@@ -54,7 +55,7 @@ export default class Message extends React.Component {
                     default:
                         return false;
                 }
-            });
+            }): [];
 
         if (message.length !== 0) {
             this.setState({ show: true, message: message.join(' ') });
@@ -82,3 +83,17 @@ export default class Message extends React.Component {
         );
     }
 }
+
+export default connect (
+    function stateToProps(state) {
+        if (state.initialized && state.data[state.currentFrame])
+            return {
+                message: state.data[state.currentFrame].message
+            };
+        else
+            return {};
+    },
+    function dispatchToProps(dispatch) {
+        return {};
+    }
+)(Message);
