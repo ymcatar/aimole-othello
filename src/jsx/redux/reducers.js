@@ -66,7 +66,7 @@ export default function reducer(prevState, action) {
                 state.playing = false;
                 val = state.totalFrame - 1;
             } else if (!state.ended && action.data > state.totalFrame - 1) {
-                console.log('too fast!');
+                // console.log('too fast!');
                 val = state.currentFrame;
             }
 

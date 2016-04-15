@@ -18,7 +18,7 @@ const endStream = () => ({ type: END_STREAM });
 
 export const startStream = () => {
     return function(dispatch) {
-        console.log(aimole);
+        // console.log(aimole);
         aimole.on('display', e => {
             dispatch(receiveFrame(e));
         });
