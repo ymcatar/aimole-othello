@@ -39,6 +39,9 @@ class Message extends React.Component {
                             return `Black wins.`;
                         break;
 
+                    case 'timeout':
+                        return `Time limit exceeded (${second} ms).`;
+
                     case 'draw':
                         return `Draw!`;
 
