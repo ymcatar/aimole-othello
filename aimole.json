@@ -3,8 +3,8 @@
   "description": "Happy AI coding. :)",
   "author": "",
   "version": "1.0.0",
-  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/31730a5b8da34aabb0139e2e39f7dd92bcb2b0e6/dist/index.html",
-  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/31730a5b8da34aabb0139e2e39f7dd92bcb2b0e6/dist/bg.jpg",
+  "viewUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/8ce198b5b917120b6bb0943030d3ad53218da5ba/dist/index.html",
+  "bgUrl": "https://cdn.rawgit.com/leoyuholo/aimole-othello/8ce198b5b917120b6bb0943030d3ad53218da5ba/dist/bg.jpg",
   "players": 2,
   "ranking": {
     "scheme": "elo",
