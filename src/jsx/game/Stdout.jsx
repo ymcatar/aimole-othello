@@ -13,7 +13,7 @@ const styles = {
         color: 'white',
         wordBreak: 'break-all',
         overflowX: 'hidden',
-        overflowY: 'scroll',
+        overflowY: 'hidden',
     },
     grey: color => ({
         opacity: 0.2,
