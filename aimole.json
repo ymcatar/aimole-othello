@@ -15,7 +15,9 @@
     "language": "python"
   },
   "codeTpl": {
-    "c": "codetpl/tpl.c"
+    "c": "codetpl/tpl.c",
+    "javascript": "codetpl/tpl.js",
+    "python:": "codetpl/tpl.py"
   },
   "ai": [
     {

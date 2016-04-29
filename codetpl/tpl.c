@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 /* write your compute function
- * it takes in the 8 * 8 board, your disc and your opponents' disc
+ * it takes in a 8 * 8 board, your disc and your opponents' disc
  * return your next move by changing the value of row and col
  */
-void compute(char board[8][8] , char me, char opponent, int* row, int* col) {
+void compute(char board[8][8], char me, char opponent, int* row, int* col) {
     // only valid for the first move, give this AI more capability!
     if(me == 'W') {
         *row = 2;

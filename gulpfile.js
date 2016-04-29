@@ -22,12 +22,9 @@ gulp.task('static', () => {
 
 /* dev */
 gulp.task('jsx', () => {
+	process.env.NODE_ENV = 'development';
 	var bundler = browserify('./src/jsx/App.jsx', {
-		debug: true,
-		paths: ['./src/jsx'],
-		cache: {},
-		packageCache: {},
-		fullPaths: true
+		paths: ['./src/jsx']
 	}).transform(babelify, {
 		presets: ["es2015", "react"],
 		ignore: /(bower_components)|(node_modules)/
@@ -53,13 +50,10 @@ gulp.task('watch', () => {
 
 /* build */
 gulp.task('jsx_env', () => {
+	process.env.NODE_ENV = 'production';
 	gutil.log('build starting.');
 	browserify('./src/jsx/App.jsx', {
-		debug: false,
-		paths: ['./src/jsx'],
-		cache: {},
-		packageCache: {},
-		fullPaths: true
+		paths: ['./src/jsx']
 	})
 		.transform(babelify, {
 			presets: ["es2015", "react"],
