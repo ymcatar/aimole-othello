@@ -22,7 +22,7 @@ process.stdin.on('data', data => {
 	const opponent = lines[0].charAt(2);
 
 	// game board
-	const board = lines.slice(1, lines.length - 1);
+	const board = lines.slice(1);
 
 	// compute my move and print it to stdout
 	console.log(compute(me, opponent, board).join(' '));
