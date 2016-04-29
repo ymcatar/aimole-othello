@@ -17,7 +17,7 @@
   "codeTpl": {
     "c": "codetpl/tpl.c",
     "javascript": "codetpl/tpl.js",
-    "python:": "codetpl/tpl.py"
+    "python": "codetpl/tpl.py"
   },
   "ai": [
     {
